@@ -1,11 +1,9 @@
 import { Player } from "./player"
 
-export interface Match {
-    local: Team;
-    visitor: Team;
+export class Match {
+    constructor(readonly local: Team, readonly visitor: Team) {}
 }
 
-export interface Team {
-    drivePlayer: Player;
-    backhandPlayer: Player;
+export class Team {
+    constructor(readonly drivePlayer: Player, readonly backhandPlayer: Player) {}
 }

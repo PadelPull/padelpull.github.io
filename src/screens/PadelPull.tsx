@@ -7,6 +7,7 @@ import { Player, PreferredSide } from '../domain/player';
 export interface PadelPullProps {
     players: Player[];
     onAddPlayerClick: () => void;
+    onShowPullModalClick: () => void;
     onDeletePlayerClick: (player: Player) => void;
 }
 
@@ -14,7 +15,7 @@ const PadelPull = (props: PadelPullProps) => {
     return <>
         <PadelPullTitle />
         <PlayersList players={props.players} onDeletePlayerClick={props.onDeletePlayerClick} />
-        <GeneratePullButton />
+        <GeneratePullButton onClick={props.onShowPullModalClick}/>
         <AddPlayerButton onClick={props.onAddPlayerClick} />
     </>
 }
@@ -90,8 +91,13 @@ const AddPlayerButton = (props: AddPlayerButtonProps) => {
     </Fab>
 }
 
-const GeneratePullButton = () => {
+interface GeneratePullButtonProps {
+    onClick: () => void;
+}
+
+const GeneratePullButton = (props: GeneratePullButtonProps) => {
     return <Fab
+        onClick={props.onClick}
         aria-label="Generate Pull"
         size="large"
         color="primary"
