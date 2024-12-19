@@ -1,4 +1,4 @@
-import { Button, Card, Fab, ListItem, Modal } from "@mui/material"
+import { Button, Card, ListItem, Modal } from "@mui/material"
 import { Player } from "../domain/player";
 import { PadelPull } from "../domain/pull";
 import { useState } from "react";
@@ -14,7 +14,7 @@ export interface ShowPullModalProps {
 const ShowPullModal = (props: ShowPullModalProps) => {
     const players = props.players;
     const pull = new PadelPull(players);
-    const [matches, _] = useState(pull.generateMatches());
+    const [matches] = useState(pull.generateMatches());
     return (
         <Modal
             open={props.visible}

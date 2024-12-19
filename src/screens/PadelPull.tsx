@@ -80,7 +80,9 @@ const AddPlayerButton = (props: AddPlayerButtonProps) => {
         color="primary"
         onClick={props.onClick}
         onKeyUp={(event) => {
-            event.key === 'Enter' && props.onClick();
+            if (event.key === 'Enter') {
+                props.onClick();
+            }
         }}
         sx={{
             position: 'fixed',

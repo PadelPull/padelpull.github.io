@@ -11,7 +11,7 @@ export class PadelPull {
     }
   
     generateMatches(): Match[] {
-       let matches: Match[] = [];
+       const matches: Match[] = [];
        const player1 = new Player("1", "Player 1", PreferredSide.Drive);
        const player2 = new Player("2", "Player 2", PreferredSide.Backhand);
        const player3 = new Player("3", "Player 3", PreferredSide.Both);
