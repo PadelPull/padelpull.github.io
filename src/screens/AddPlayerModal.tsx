@@ -53,7 +53,8 @@ const AddPlayerModal = (props: AddPlayerModalProps) => {
                         <PrefferedSideSelector
                             currentSide={preferredSide}
                             onChange={(value) => {
-                                setPreferredSide(value.target.value);
+                                const side = value.target.value as PreferredSide.Backhand;
+                                setPreferredSide(side);
                             }}
                         />
                         <div style={{
