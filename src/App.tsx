@@ -8,7 +8,7 @@ import AddPlayerModal from "./screens/AddPlayerModal";
 
 const storage = new PlayerStore();
 function App() {
-  const [showAddPlayerModal, setShowAddPlayerModal] = useState(true);
+  const [showAddPlayerModal, setShowAddPlayerModal] = useState(false);
   const [players, setPlayers] = useState(storage.getAllPlayers());
   const onAddPlayerClick = () => {
     setShowAddPlayerModal(true);

@@ -32,7 +32,7 @@ interface PlayersListProps {
 
 const PlayersList = (props: PlayersListProps) => {
     return <List>
-        {props.players.map(player => <PlayerItem player={player} onDeletePlayerClick={props.onDeletePlayerClick} />)}
+        {props.players.map(player => <PlayerItem key={player.id} player={player} onDeletePlayerClick={props.onDeletePlayerClick} />)}
     </List>;
 }
 
