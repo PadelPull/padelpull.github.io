@@ -12,12 +12,29 @@ export interface PadelPullProps {
 }
 
 const PadelPull = (props: PadelPullProps) => {
-    return <>
+    if (props.players.length === 0) {
+        return <>
+        <PadelPullTitle />
+        <h2
+        style={{
+            marginTop: 200,
+            marginLeft: 16,
+            marginRight: 16,
+            textAlign: 'center',
+        }}
+        >Añade tus jugadores haciendo click en el botón ✚ y genera tus equipos para la pull con el botón 🔀</h2>
+        <GeneratePullButton onClick={props.onShowPullModalClick}/>
+        <AddPlayerButton onClick={props.onAddPlayerClick} />
+        </>;
+    } else {
+        return <>
         <PadelPullTitle />
         <PlayersList players={props.players} onDeletePlayerClick={props.onDeletePlayerClick} />
         <GeneratePullButton onClick={props.onShowPullModalClick}/>
         <AddPlayerButton onClick={props.onAddPlayerClick} />
     </>
+    }
+    
 }
 
 const PadelPullTitle = () => {
