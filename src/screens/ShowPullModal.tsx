@@ -69,11 +69,16 @@ const MatchesList = (props: MatchesListProps) => {
         overflowY: "scroll",
         height: "400px",
     }}>
-        {props.matches.map((match, index) => <MatchItem key={index} match={match}/>)}
+        {props.matches.map((match, index) => <MatchItem key={index} match={match} index={index}/>)}
     </div>;
 };
 
-const MatchItem = (props: { match: Match }) => {
+interface MatchItemProps {
+    match: Match;
+    index: number;
+}
+
+const MatchItem = (props: MatchItemProps) => {
     const localTeam = props.match.local;
     const visitorTeam = props.match.visitor;
     const team1 = `${localTeam.backhandPlayer.name} - ${localTeam.drivePlayer.name} `
@@ -82,9 +87,11 @@ const MatchItem = (props: { match: Match }) => {
         display: 'flex',
         justifyContent: 'center',
     }}>
-        <span><b>{team1}</b></span>
+        <span><b>Partido {props.index + 1}: </b></span>
+        &nbsp;
+        <span>{team1}</span>
         &nbsp;-&nbsp;
-        <span><b>{team2}</b></span>
+        <span>{team2}</span>
         
     </ListItem>
 };

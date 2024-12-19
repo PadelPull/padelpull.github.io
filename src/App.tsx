@@ -55,8 +55,23 @@ function App() {
         }
         }
       />
+      <Authors/>
     </FullScreen>
   )
 }
+
+const Authors = () => {
+  return <p style={{
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    padding: 8,
+    color: 'white',
+    backgroundColor: 'black',
+    fontSize: 12,
+  }}>
+    Hecho por <a href="https://x.com/pedro_g_s">Pedro Gómez</a> & Juan Zamudio
+  </p>
+};
 
 export default App
