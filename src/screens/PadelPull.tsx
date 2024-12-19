@@ -6,6 +6,8 @@ import { Player, PreferredSide } from '../domain/player';
 
 export interface PadelPullProps {
     players: Player[];
+    onAddPlayer: (player: Player) => void;
+    onDeletePlayer: (player: Player) => void;
 }
 
 const PadelPull = (props: PadelPullProps) => {
