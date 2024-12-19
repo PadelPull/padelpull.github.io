@@ -1,15 +1,17 @@
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon  from '@mui/icons-material/Delete';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
-import { v4 as uuidv4 } from 'uuid';
 import { Fab, IconButton, List, ListItemButton, ListItemText } from "@mui/material";
 import { Player, PreferredSide } from '../domain/player';
 
-const PadelPull = () => {
-    const players: Player[] = new Array(1000).fill(new Player(uuidv4(), "Pedro", PreferredSide.Both));
+export interface PadelPullProps {
+    players: Player[];
+}
+
+const PadelPull = (props: PadelPullProps) => {
     return <>
         <PadelPullTitle/>
-        <PlayersList players={players}/>
+        <PlayersList players={props.players}/>
         <GeneratePullButton/>
         <AddPlayerButton/>
         </>
