@@ -3,7 +3,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import { Fab, IconButton, List, ListItemButton, ListItemText } from "@mui/material";
 import { Player, PreferredSide } from '../domain/player';
-import {Adsense} from '@ctrl/react-adsense';
 
 export interface PadelPullProps {
     players: Player[];
@@ -41,12 +40,13 @@ const PadelPull = (props: PadelPullProps) => {
 }
 
 const AdSpace = () => {
-    return <div id="adSpace">
-        <Adsense
-            client='pub-2949791892241807'
-            slot='8758789369'
-            format='auto'
-        />
+    return <div>
+        <ins className="adsbygoogle"
+            style={{display: 'block'}}
+            data-ad-client="ca-pub-2949791892241807"
+            data-ad-slot="4399921807"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
         </div>
 }
 
