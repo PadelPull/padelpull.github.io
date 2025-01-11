@@ -16,6 +16,7 @@ const ShowPullModal = (props: ShowPullModalProps) => {
     const players = props.players;
     const pull = new PadelPull(players);
     const [matches] = useState(pull.generateMatches());
+    const reservePlayers = players.filter(player => !matches.some(match => match.local.backhandPlayer === player || match.local.drivePlayer === player || match.visitor.backhandPlayer === player || match.visitor.drivePlayer === player));
     return (
         <Modal
             open={props.visible}
@@ -39,7 +40,7 @@ const ShowPullModal = (props: ShowPullModalProps) => {
                     flexDirection: 'column',
                 }}>
                     <h1 style={{ textAlign: "center" }}>🎾 Partidos 🎾</h1>
-                    <MatchesList matches={matches}/>
+                    <MatchesList matches={matches} reservePlayers={reservePlayers}/>
                     <Button
                         aria-label="Copy to clipbord"
                         size="large"
@@ -62,6 +63,7 @@ const ShowPullModal = (props: ShowPullModalProps) => {
 
 interface MatchesListProps {
     matches: Match[];
+    reservePlayers: Player[];
 }
 
 const MatchesList = (props: MatchesListProps) => {
@@ -81,6 +83,11 @@ const MatchesList = (props: MatchesListProps) => {
             height: "400px",
         }}>
             {props.matches.map((match, index) => <MatchItem key={index} match={match} index={index}/>)}
+            {props.reservePlayers.length > 0 && 
+            <div>
+                <h3>Reservas: </h3>
+                {props.reservePlayers.map(player => <ListItem key={player.id}>{player.name}</ListItem>)}
+            </div>}
         </div>;
     }
     
