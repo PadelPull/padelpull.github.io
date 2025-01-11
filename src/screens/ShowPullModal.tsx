@@ -101,8 +101,8 @@ interface MatchItemProps {
 const MatchItem = (props: MatchItemProps) => {
     const localTeam = props.match.local;
     const visitorTeam = props.match.visitor;
-    const team1 = `${localTeam.backhandPlayer.name} - ${localTeam.drivePlayer.name} `
-    const team2 = `${visitorTeam.backhandPlayer.name} - ${visitorTeam.drivePlayer.name}`
+    const team1 = `${localTeam.backhandPlayer.name}/${localTeam.drivePlayer.name} `
+    const team2 = `${visitorTeam.backhandPlayer.name}/${visitorTeam.drivePlayer.name}`
     return <ListItem style={{
         display: 'flex',
         justifyContent: 'center',
