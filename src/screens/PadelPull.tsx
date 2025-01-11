@@ -41,12 +41,14 @@ const PadelPull = (props: PadelPullProps) => {
 }
 
 const AdSpace = () => {
+    console.log("===> RENDERING AD SPACE")
     return <div id="adSpace" style={{
         height: 100,
         width: "100%",
+        backgroundColor: 'red',
     }}>
         <Adsense
-            client='pub-2949791892241807'
+            client='ca-pub-8758789369'
             slot='8758789369'
         />
         </div>
