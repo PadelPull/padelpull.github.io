@@ -2,61 +2,81 @@ import { Match, Team } from "./match";
 import { Player, PreferredSide } from "./player";
 
 export class PadelPull {
-  
-    constructor(private readonly players: Player[] = []) {
-    }
-  
-    addPlayer(player: Player): void {
-      this.players.push(player);
-    }
-  
-    generateMatches(): Match[] {
-       const matches: Match[] = [];
-       const player1 = new Player("1", "Player 1", PreferredSide.Drive);
-       const player2 = new Player("2", "Player 2", PreferredSide.Backhand);
-       const player3 = new Player("3", "Player 3", PreferredSide.Both);
-       const player4 = new Player("4", "Player 4", PreferredSide.Drive);
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       matches.push(new Match(new Team(player1, player2), new Team(player3, player4)));
-       return matches;
-    }
-  
+
+  constructor(private players: Player[] = []) {
   }
+
+  addPlayer(player: Player): void {
+    this.players.push(player);
+  }
+
+  generateMatches(): Match[] {
+    let pullMatches: Match[] = []
+    const numberOfMatches = Math.floor(this.players.length / 4);
+    for (let i = 0; i <= numberOfMatches; i++) {
+      const team1 = this.generateRandomTeam();
+      const team2 = this.generateRandomTeam();
+      if (team1 !== undefined && team2 !== undefined) {
+        const match = new Match(team1, team2);
+        pullMatches.push(match);
+      }
+    }
+    console.log("====> PULL GENERATED", pullMatches);
+    return pullMatches;
+  }
+
+  private removePlayerFromList(player: Player) {
+    this.players = this.players.filter(p => p !== player);
+  }
+  private generateRandomTeam(): Team | undefined {
+    const firstPlayer = this.getRandomPlayer(this.players)
+    if (firstPlayer === undefined) {
+      return undefined;
+    }
+    this.removePlayerFromList(firstPlayer);
+    let player2: Player | undefined = undefined;
+    if (firstPlayer.preferredSide === PreferredSide.Backhand) {
+      player2 = this.getRandomPlayer(this.getPlayers(PreferredSide.Drive));
+      if (player2 === undefined) {
+        player2 = this.getRandomPlayer(this.getPlayers(PreferredSide.Both));
+        if (player2 === undefined) {
+          console.log("error, no more players");
+        }
+      }
+    } else if (firstPlayer.preferredSide === PreferredSide.Drive) {
+      player2 = this.getRandomPlayer(this.getPlayers(PreferredSide.Backhand));
+      if (player2 === undefined) {
+        player2 = this.getRandomPlayer(this.getPlayers(PreferredSide.Both));
+        if (player2 === undefined) {
+          console.log("error, no more players")
+        }
+
+      }
+
+    } else {
+      player2 = this.getRandomPlayer(this.players);
+      if (player2 === undefined) {
+        console.log("error, no more players")
+      }
+
+    }
+    if (player2 !== undefined) {
+      this.removePlayerFromList(player2);
+      return new Team(firstPlayer, player2)
+    }
+    return undefined;
+  }
+
+  private getPlayers(side: PreferredSide): Player[] {
+    return this.players.filter(p => p.preferredSide === side)
+
+  }
+
+
+  private getRandomPlayer(players: Player[]): Player | undefined {
+    if (players.length <= 0) return undefined;
+    const randomPosition = Math.floor(Math.random() * players.length);
+    return players[randomPosition];
+  }
+
+}

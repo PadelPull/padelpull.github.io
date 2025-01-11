@@ -12,6 +12,7 @@ export interface ShowPullModalProps {
 }
 
 const ShowPullModal = (props: ShowPullModalProps) => {
+    if (!props.visible) return null;
     const players = props.players;
     const pull = new PadelPull(players);
     const [matches] = useState(pull.generateMatches());
