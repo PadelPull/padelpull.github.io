@@ -40,14 +40,7 @@ const PadelPull = (props: PadelPullProps) => {
 }
 
 const AdSpace = () => {
-    return <div>
-        <ins className="adsbygoogle"
-            style={{display: 'block'}}
-            data-ad-client="ca-pub-2949791892241807"
-            data-ad-slot="4399921807"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        </div>
+    return <div></div>
 }
 
 const PadelPullTitle = () => {
