@@ -21,7 +21,6 @@ export class PadelPull {
         pullMatches.push(match);
       }
     }
-    console.log("====> PULL GENERATED", pullMatches);
     return pullMatches;
   }
 

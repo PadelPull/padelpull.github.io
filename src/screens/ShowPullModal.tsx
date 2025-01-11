@@ -65,13 +65,25 @@ interface MatchesListProps {
 }
 
 const MatchesList = (props: MatchesListProps) => {
-    return <div style={{
-        overflowX: "hidden",
-        overflowY: "scroll",
-        height: "400px",
-    }}>
-        {props.matches.map((match, index) => <MatchItem key={index} match={match} index={index}/>)}
-    </div>;
+    if (props.matches.length === 0) { 
+        return <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: "400px",
+        }}>
+            <h3>No tienes jugadores suficientes!</h3>
+        </div>;
+    } else {
+        return <div style={{
+            overflowX: "hidden",
+            overflowY: "scroll",
+            height: "400px",
+        }}>
+            {props.matches.map((match, index) => <MatchItem key={index} match={match} index={index}/>)}
+        </div>;
+    }
+    
 };
 
 interface MatchItemProps {
