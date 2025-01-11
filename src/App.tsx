@@ -50,8 +50,8 @@ function App() {
         players={players}
         visible={showPullModal}
         onClose={() => setShowPullModal(false)}
-        onCopyMatches={(matches) => {
-          new MatchesClipboard(matches).copyToClipboard();
+        onCopyMatches={(matches, reservePlayers) => {
+          new MatchesClipboard(matches, reservePlayers).copyToClipboard();
         }
         }
       />

@@ -8,7 +8,7 @@ export interface ShowPullModalProps {
     visible: boolean;
     players: Player[];
     onClose: () => void;
-    onCopyMatches: (matches: Match[]) => void;
+    onCopyMatches: (matches: Match[], reservePlayers: Player[]) => void;
 }
 
 const ShowPullModal = (props: ShowPullModalProps) => {
@@ -50,7 +50,7 @@ const ShowPullModal = (props: ShowPullModalProps) => {
                             alignSelf: 'center',
                         }}
                         onClick={() => {
-                            props.onCopyMatches(matches);
+                            props.onCopyMatches(matches, reservePlayers);
                         }}
                         >
                         Copiar partidos
