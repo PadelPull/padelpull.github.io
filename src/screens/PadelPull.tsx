@@ -3,6 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import { Fab, IconButton, List, ListItemButton, ListItemText } from "@mui/material";
 import { Player, PreferredSide } from '../domain/player';
+import {Adsense} from '@ctrl/react-adsense';
 
 export interface PadelPullProps {
     players: Player[];
@@ -15,6 +16,7 @@ const PadelPull = (props: PadelPullProps) => {
     if (props.players.length === 0) {
         return <>
         <PadelPullTitle />
+        <AdSpace/>
         <h2
         style={{
             marginTop: 200,
@@ -29,12 +31,25 @@ const PadelPull = (props: PadelPullProps) => {
     } else {
         return <>
         <PadelPullTitle />
+        <AdSpace/>
         <PlayersList players={props.players} onDeletePlayerClick={props.onDeletePlayerClick} />
         <GeneratePullButton onClick={props.onShowPullModalClick}/>
         <AddPlayerButton onClick={props.onAddPlayerClick} />
     </>
     }
     
+}
+
+const AdSpace = () => {
+    return <div id="adSpace" style={{
+        height: 100,
+        width: "100%",
+    }}>
+        <Adsense
+            client='pub-2949791892241807'
+            slot='8758789369'
+        />
+        </div>
 }
 
 const PadelPullTitle = () => {
