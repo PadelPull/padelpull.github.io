@@ -1,8 +1,9 @@
-import { Button, Card, ListItem, Modal } from "@mui/material"
+import { Button, Card, ListItem, Fab, Modal } from "@mui/material"
 import { Player } from "../domain/player";
 import { PadelPull } from "../domain/pull";
 import { useState } from "react";
 import { Match } from "../domain/match";
+import ClearIcon from '@mui/icons-material/Clear';
 
 export interface ShowPullModalProps {
     visible: boolean;
@@ -18,6 +19,7 @@ const ShowPullModal = (props: ShowPullModalProps) => {
     const [matches] = useState(pull.generateMatches());
     const reservePlayers = players.filter(player => !matches.some(match => match.local.backhandPlayer === player || match.local.drivePlayer === player || match.visitor.backhandPlayer === player || match.visitor.drivePlayer === player));
     return (
+        
         <Modal
             open={props.visible}
             onClose={props.onClose}
@@ -27,6 +29,7 @@ const ShowPullModal = (props: ShowPullModalProps) => {
                 justifyContent: 'center',
             }}
         >
+            
             <Card
                 sx={{
                     padding: 8,
@@ -35,10 +38,21 @@ const ShowPullModal = (props: ShowPullModalProps) => {
                     maxHeight: "80%",
                 }}
             >
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
+                <div style={{            
+                    textAlign:"end"
                 }}>
+                    
+                    <Fab
+                                aria-label="Clear form"
+                                size="large"
+                                color="primary"
+                onClick={() => {
+                            props.onClose();
+                                                }}
+                >
+                    <ClearIcon />
+                    
+                </Fab>
                     <h1 style={{ textAlign: "center" }}>🎾 Partidos 🎾</h1>
                     <MatchesList matches={matches} reservePlayers={reservePlayers}/>
                     <Button
@@ -56,6 +70,7 @@ const ShowPullModal = (props: ShowPullModalProps) => {
                         Copiar partidos
                     </Button>
                 </div>
+                
             </Card>
         </Modal>
     );
